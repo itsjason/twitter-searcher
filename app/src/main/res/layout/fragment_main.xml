@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.jason.twitterclient.app.MainActivity$PlaceholderFragment">
+
+    <TextView
+        android:id="@+id/top_title"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/funky_title"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_below="@id/top_title"
+        android:layout_marginTop="60dp"
+        android:textSize="30dp"
+        android:text="@string/main_title"
+        android:rotation="-39"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/search_field_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/funky_title"
+        android:layout_marginTop="20dp"
+        android:text="What do you want?"
+        />
+
+    <EditText
+        android:id="@+id/search_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/search_field_label"
+        android:text="#FCSAmerica OR 'Farm Credit'"/>
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_field"
+        android:text="Find it!"/>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Twitter Client</string>
+    <string name="hello_world">Jason\'s Awesome</string>
+    <string name="main_title">Twitter Searcher!!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_search_results">SearchResultsActivity</string>
+
+</resources>
