@@ -18,6 +18,7 @@
         android:layout_toRightOf="@id/tweet_image"
         android:text="here is some fake text here is some fake text here is some fake text here is some fake text here is some fake text here is some fake text is some fake text is some fake text is some fake text is some fake text "
         android:paddingBottom="10dp"
+        android:autoLink="web"
         android:lineSpacingExtra="1dp"/>
 
     <TextView

@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,8 +78,9 @@ public class StatusAdapter extends ArrayAdapter<TwitterSearchService.StatusResul
         username.setText("@" + status.user.screen_name);
 
         try {
-            Date tweetDate = new SimpleDateFormat().parse(status.created_at);
-            String dateString = new SimpleDateFormat("MM/yy at kk:mm").format(tweetDate);
+            Log.i("TWEET", "Date: " + status.created_at);
+            Date tweetDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss +0000 yyyy").parse(status.created_at);
+            String dateString = new SimpleDateFormat("MM/yy hh:mm aa").format(tweetDate);
             //time.setText(status.created_at);
             time.setText(dateString);
         } catch (ParseException e) {
