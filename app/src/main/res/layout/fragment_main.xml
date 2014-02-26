@@ -21,10 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_below="@id/top_title"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:textSize="30dp"
         android:text="@string/main_title"
-        android:rotation="-39"
+        android:rotation="-19"
         android:layout_marginLeft="50dp"/>
 
     <TextView
@@ -32,8 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/funky_title"
-        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
         android:text="What do you want?"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="30sp"
+        android:layout_marginTop="-10dp"
         />
 
     <EditText
@@ -43,6 +46,7 @@
         android:textSize="20dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/search_field_label"
+        android:fontFamily="sans-serif-thin"
         android:text="#FCSAmerica OR 'Farm Credit'"/>
 
     <Button

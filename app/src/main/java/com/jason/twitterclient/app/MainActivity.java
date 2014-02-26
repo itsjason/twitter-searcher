@@ -23,20 +23,27 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "MAIN";
     private ProgressDialog alertDialog;
+    private EditText searchField;
+    private Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
-        Button submitButton = (Button) findViewById(R.id.search_button);
+        submitButton = (Button) findViewById(R.id.search_button);
+        searchField = (EditText) findViewById(R.id.search_field);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = (EditText) findViewById(R.id.search_field);
-                String searchText = editText.getText().toString();
+
+                String searchText = searchField.getText().toString();
                 doSearch(searchText);
             }
         });
+
+        searchField.requestFocus();
+        searchField.setSelection(searchField.getText().length());
     }
 
     private void doSearch(final String searchText) {
