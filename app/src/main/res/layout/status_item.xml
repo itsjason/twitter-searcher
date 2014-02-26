@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-t
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/tweet_image"
         android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_height="48dp"
+        android:background="#333444"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"/>
 
     <TextView
         android:id="@+id/tweet_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tweet_image"/>
+        android:layout_toRightOf="@id/tweet_image"
+        android:text="here is some fake text here is some fake text here is some fake text here is some fake text here is some fake text here is some fake text is some fake text is some fake text is some fake text is some fake text "
+        android:paddingBottom="10dp"
+        android:lineSpacingExtra="1dp"/>
 
     <TextView
         android:id="@+id/tweet_user"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tweet_image"/>
+        android:layout_below="@id/tweet_content"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:textColor="#4099FF"
+        android:clickable="true"
+        android:text="\@ItsJason"/>
 
     <TextView
         android:id="@+id/tweet_time"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tweet_content"
-        android:layout_alignParentRight="true"
-        />
+        android:layout_marginLeft="58dp"
+        android:textSize="16sp"
+        android:text="2/3/2014 4:35 PM" />
 
 </RelativeLayout>

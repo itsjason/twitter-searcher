@@ -1,6 +1,7 @@
 package com.jason.twitterclient.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,6 +15,10 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class StatusAdapter extends ArrayAdapter<TwitterSearchService.StatusResult> {
 
@@ -69,8 +74,28 @@ public class StatusAdapter extends ArrayAdapter<TwitterSearchService.StatusResul
 
         //image.setImageURI(Uri.parse(status.user.profile_image_url));
         content.setText(status.text);
-        username.setText(status.user.screen_name);
-        time.setText(status.created_at);
+        username.setText("@" + status.user.screen_name);
+
+        try {
+            Date tweetDate = new SimpleDateFormat().parse(status.created_at);
+            String dateString = new SimpleDateFormat("MM/yy at kk:mm").format(tweetDate);
+            //time.setText(status.created_at);
+            time.setText(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView textView = (TextView) view;
+                String username = textView.getText().toString().substring(1);
+                String url = "https://twitter.com/" + username;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                _context.startActivity(browserIntent);
+            }
+        });
 
         return view;
     }

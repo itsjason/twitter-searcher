@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,7 +41,8 @@ public class MainActivity extends Activity {
 
     private void doSearch(final String searchText) {
 
-        alertDialog = new AlertDialog.Builder(this)
+        alertDialog = new ProgressDialog.Builder(this)
+                .setTitle("Please Hold")
                 .setMessage("Searching the Twitterverse...")
                 .create();
         alertDialog.show();
