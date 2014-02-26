@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.net.URL;
@@ -82,13 +86,18 @@ public class StatusAdapter extends ArrayAdapter<TwitterSearchService.StatusResul
 
 
         //image.setImageURI(Uri.parse(status.user.profile_image_url));
+        Log.i("CONTENT", finalContent);
         content.setText(Html.fromHtml(finalContent));
+        Linkify.addLinks(content, Linkify.WEB_URLS);
+        content.setMovementMethod(LinkMovementMethod.getInstance());
         username.setText("@" + status.user.screen_name);
 
         try {
             Log.i("TWEET", "Date: " + status.created_at);
             Date tweetDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss +0000 yyyy").parse(status.created_at);
-            String dateString = new SimpleDateFormat("MM/yy hh:mm aa").format(tweetDate);
+            DateTime dateTime = new DateTime(tweetDate).minusHours(5);
+
+            String dateString = dateTime.toString("MM/yy hh:mm aa");
             //time.setText(status.created_at);
             time.setText(dateString);
         } catch (ParseException e) {

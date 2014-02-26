@@ -47,14 +47,23 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/search_field_label"
         android:fontFamily="sans-serif-thin"
-        android:text="#FCSAmerica OR 'Farm Credit'"/>
+        android:text="#FCSAmerica OR 'Farm Credit'"
+        android:singleLine="true"/>
 
     <Button
         android:id="@+id/search_button"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_field"
         android:text="Find it!"/>
+
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:layout_below="@id/search_field"
+        android:layout_alignParentRight="true"/>
 
 
 

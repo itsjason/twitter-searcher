@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:clickable="false">
 
     <ImageView
         android:id="@+id/tweet_image"
@@ -18,7 +19,7 @@
         android:layout_toRightOf="@id/tweet_image"
         android:text="here is some fake text here is some fake text here is some fake text here is some fake text here is some fake text here is some fake text is some fake text is some fake text is some fake text is some fake text "
         android:paddingBottom="10dp"
-        android:autoLink="web"
+        android:linksClickable="true"
         android:lineSpacingExtra="1dp"/>
 
     <TextView

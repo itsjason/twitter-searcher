@@ -25,11 +25,15 @@ public class MainActivity extends Activity {
     private ProgressDialog alertDialog;
     private EditText searchField;
     private Button submitButton;
+    private TwitterSearchService searchService;
+    private boolean haveToken = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
+        searchService = new TwitterSearchService();
+        getTwitterToken();
         submitButton = (Button) findViewById(R.id.search_button);
         searchField = (EditText) findViewById(R.id.search_field);
 
@@ -42,8 +46,36 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button clearButton = (Button) findViewById(R.id.clear_button);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchField.setText("");
+                searchField.requestFocus();
+            }
+        });
+
         searchField.requestFocus();
         searchField.setSelection(searchField.getText().length());
+    }
+
+    private void getTwitterToken() {
+            new AsyncTask<Void, Void, String>() {
+                @Override
+                protected String doInBackground(Void... voids) {
+                    try {
+                        return searchService.getToken(getString(R.string.twitter_auth_creds));
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+
+                @Override
+                protected void onPostExecute(String token) {
+                    super.onPostExecute(token);
+                    haveToken = token != null;
+                }
+            }.execute();
     }
 
     private void doSearch(final String searchText) {
@@ -54,13 +86,20 @@ public class MainActivity extends Activity {
         alertDialog.setIndeterminate(true);
         alertDialog.show();
 
+        while(!haveToken) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
-                    TwitterSearchService service = new TwitterSearchService();
-                    String token = service.getToken(getString(R.string.twitter_auth_creds));
-                    TwitterSearchService.StatusResult[] results = service.searchForTweets(searchText);
+                    waitForTwitterToken();
+                    TwitterSearchService.StatusResult[] results = searchService.searchForTweets(searchText);
                     Intent listIntent = new Intent(MainActivity.this, SearchResultsActivity.class);
                     //listIntent.putExtra(SearchResultsActivity.EXTRA_STATUSES, results);
                     SearchResultsActivity.setStatusResults(results);
@@ -77,5 +116,9 @@ public class MainActivity extends Activity {
                 alertDialog.dismiss();
             }
         }.execute();
+    }
+
+    private void waitForTwitterToken() {
+
     }
 }
