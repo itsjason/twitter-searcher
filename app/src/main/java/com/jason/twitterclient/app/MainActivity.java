@@ -22,7 +22,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     private static final String TAG = "MAIN";
-    private AlertDialog alertDialog;
+    private ProgressDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +41,10 @@ public class MainActivity extends Activity {
 
     private void doSearch(final String searchText) {
 
-        alertDialog = new ProgressDialog.Builder(this)
-                .setTitle("Please Hold")
-                .setMessage("Searching the Twitterverse...")
-                .create();
+        alertDialog  = new ProgressDialog(this);
+        alertDialog.setTitle("Please Hold");
+        alertDialog.setMessage("Searching the Twitterverse...");
+        alertDialog.setIndeterminate(true);
         alertDialog.show();
 
         new AsyncTask<Void, Void, Void>() {
