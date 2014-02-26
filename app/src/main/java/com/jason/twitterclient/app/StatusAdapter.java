@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,12 +46,19 @@ public class StatusAdapter extends ArrayAdapter<TwitterSearchService.StatusResul
 
         final ImageView image = (ImageView) view.findViewById(R.id.tweet_image);
         image.setImageBitmap(null);
+
         TextView content = (TextView) view.findViewById(R.id.tweet_content);
         TextView username = (TextView) view.findViewById(R.id.tweet_user);
         TextView time = (TextView) view.findViewById(R.id.tweet_time);
 
-
         final TwitterSearchService.StatusResult status = statuses[position];
+
+        // Convert twitter names to links
+        String usernameRegex = "@([a-zA-Z0-9_]+)";
+        String usernamesReplaced = status.text.replaceAll(usernameRegex, "<a href=\"https://twitter.com/$1\">$0</a>");
+
+        // Convert hashtags to links
+        String finalContent = usernamesReplaced;
 
         new AsyncTask<Void, Void, Bitmap>() {
             @Override
@@ -74,7 +82,7 @@ public class StatusAdapter extends ArrayAdapter<TwitterSearchService.StatusResul
 
 
         //image.setImageURI(Uri.parse(status.user.profile_image_url));
-        content.setText(status.text);
+        content.setText(Html.fromHtml(finalContent));
         username.setText("@" + status.user.screen_name);
 
         try {
